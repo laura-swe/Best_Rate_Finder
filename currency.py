@@ -119,5 +119,5 @@ df_sells.to_excel(writer, 'Sells', index_label='Code')
 df_max.to_excel(writer, 'Bet Buys', index_label='Code')
 writer.save()
 
-print(df_max)
-pass
+#print(df_max)
+#pass
