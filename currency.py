@@ -2,14 +2,16 @@ from lxml import html
 import xml.etree.ElementTree as ET
 import pandas as pd
 import requests
+import sys
 
 #vbce
 page = requests.get('https://www.vbce.ca/rates.html')
 tree = html.fromstring(page._content)
 rates = tree.xpath('//tr[@class="f32 major-rate"]//text()')
 rates = [i.split('\n\t\t\t\t\t\t', 1)[0] for i in rates]
-rates = filter(None, rates)
-rates = [rates[x:x+5] for x in xrange(0, len(rates), 5)]
+rates = list(filter(None, rates))
+rates = [rates[x:x+5] for x in range(0, rates.__len__(), 5)]
+
 cols = ['code','country','unit', 'vbce_buys', 'vbce_sells']
 df_vbce = pd.DataFrame(rates, columns=cols)
 df_vbce = df_vbce.drop('country', axis=1)
@@ -21,8 +23,8 @@ tree = html.fromstring(page._content)
 rates = tree.xpath('//table[@id="tablepress-1"]//tbody//text()')
 rates = [i.split('\n', 1)[0] for i in rates]
 rates = [i.split('\t', 1)[0] for i in rates]
-rates = filter(None, rates)
-rates = [rates[x:x+3] for x in xrange(0, len(rates), 3)]
+rates = list(filter(None, rates))
+rates = [rates[x:x+3] for x in range(0, rates.__len__(), 3)]
 cols = ['code', 'kingmark_buys', 'kingmark_sells']
 df_kingmark = pd.DataFrame(rates, columns=cols)
 df_kingmark = df_kingmark.set_index(['code'])
@@ -33,8 +35,9 @@ tree = html.fromstring(page._content)
 rates = tree.xpath('//table[@class="rates"]//text()')
 rates = [i.split('\n', 1)[0] for i in rates]
 rates = [i.split('\t', 1)[0] for i in rates]
-rates = filter(None, rates)
-rates = [rates[x:x+4] for x in xrange(6, len(rates), 4)]
+rates = [i.split('  ', 1)[0] for i in rates]
+rates = list(filter(None, rates))
+rates = [rates[x:x+4] for x in range(6, rates.__len__(), 4)]
 cols = ['country', 'code', 'scotia_sells', 'scotia_buys']
 df_scotia = pd.DataFrame(rates, columns=cols)
 df_scotia['code'] = df_scotia['code'].apply(lambda x: x[x.find("(")+1:x.find(")")])
@@ -48,8 +51,8 @@ tree = html.fromstring(page._content)
 rates = tree.xpath('//table[@class="currencyTBL"]//tbody//text()')
 rates = [i.split('\n', 1)[0] for i in rates]
 rates = [i.split('\t', 1)[0] for i in rates]
-rates = filter(None, rates)
-rates = [rates[x:x+5] for x in xrange(5, len(rates), 5)]
+rates = list(filter(None, rates))
+rates = [rates[x:x+5] for x in range(5, rates.__len__(), 5)]
 cols = ['country', 'currency', 'code', 'happy_currency_buys', 'happy_currency_sells']
 df_happy = pd.DataFrame(rates, columns=cols)
 df_happy = df_happy.drop('country', axis=1)
@@ -80,8 +83,8 @@ tree = html.fromstring(page._content)
 rates = tree.xpath('//table[@class="col-md-12 table-striped table-condensed cf"]//tbody//text()')
 rates = [i.split('\n', 1)[0] for i in rates]
 rates = [i.split('\t', 1)[0] for i in rates]
-rates = filter(None, rates)
-rates = [rates[x:x+7] for x in xrange(0, len(rates), 7)]
+rates = list(filter(None, rates))
+rates = [rates[x:x+7] for x in range(0, rates.__len__(), 7)]
 cols = ['country', 'currency', 'code', 'gastown_buys', 'gastown_sells', 'inv1', 'inv2']
 df_gastown = pd.DataFrame(rates, columns=cols)
 df_gastown = df_gastown.drop('inv1', axis=1)
@@ -106,13 +109,15 @@ ls_buys = ['vbce_buys', 'kingmark_buys', 'scotia_buys', 'happy_currency_buys', '
 df_sells = df.filter(ls_sells, axis=1)
 df_buys = df.filter(ls_buys, axis=1)
 
-eur = df_buys[df_buys.index=='EUR']
-df_max = eur[eur.astype(float).idxmax(axis=1)]
+code_wanted = sys.argv[1]
+wanted = df_buys[df_buys.index == code_wanted]
+df_max = wanted[wanted.astype(float).idxmax(axis=1)]
 writer = pd.ExcelWriter("output.xlsx")
-eur.to_excel(writer, 'EUR Buys', index_label='Code')
+wanted.to_excel(writer, code_wanted+' Buys', index_label='Code')
 df_buys.to_excel(writer, 'Buys', index_label='Code')
 df_sells.to_excel(writer, 'Sells', index_label='Code')
 df_max.to_excel(writer, 'Bet Buys', index_label='Code')
+writer.save()
 
 print(df_max)
 pass
