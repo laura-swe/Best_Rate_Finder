@@ -31,7 +31,7 @@ For other operating systems follow the instructions [here](https://python.org/do
 The libraries used in this project are:
 
 * Pandas
-* Elemen Tree XML
+* Element Tree XML
 * Requests
 * OpenPyXL 
 
