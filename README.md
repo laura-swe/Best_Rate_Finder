@@ -65,7 +65,7 @@ Currency code can be any of the following:
 ### Output
 
 The output will be an excel file named `output.xlsx` (located in the project directory) containing four sheets: 
-1. <Currency code> Buys: Data for given currency code
+1. Currency code Buys: Data for given currency code
 2. Buys: Buying data for all currency codes
 3. Sells: Selling data for all currency codes
 4. Best Buys: Place that buys currency highest
