@@ -3,7 +3,7 @@
 This program is a simple Python script that parses different websites to finds the best exchange rate in the Lower Mainland area for a provided currency code 
 
 ## Exchange Rates Data References
-* [VBCE](https://www.vbce.ca)
+* [VBCE](https://www.vbce.ca/rates)
 * [The Bank of Nova Scotia](http://www.scotiabank.com/ca/en/0,,1118,00.html)
 * [Kingmark Currency Exchange](http://www.kingmark.ca/exchange-rates)
 * [Happy Currency Exchange](http://www.happycurrency.com/rates)
@@ -88,4 +88,4 @@ GitHub was used to track all modifications and new implementations. For the full
 
 ## License
 
-This project is licensed under the Apache License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
