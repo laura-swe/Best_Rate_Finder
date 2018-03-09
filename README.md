@@ -76,7 +76,7 @@ To see a simple example use this command:
 
 `$ python currency.py USD`
 
-A new file named output.xlsx should have been created. Use Excel to see the data
+A new file named output.xlsx is created in project directory. Use Excel to view the data
 
 ## Version Control
 
