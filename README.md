@@ -1,6 +1,6 @@
 # Best Exchange Currency Rate Finder  
 
-This program is a simple Python script that parses different websites to finds the best exchange rate in the Lower Mainland area for a provided currency code 
+This program will find exchange rates for a provided currency from foreign-exchange providers listed in the data references below. The base currency for all exchange rates is Canadian Dollar (CAD).
 
 ## Exchange Rates Data References
 * [VBCE](https://www.vbce.ca/rates)
@@ -8,9 +8,9 @@ This program is a simple Python script that parses different websites to finds t
 * [Kingmark Currency Exchange](http://www.kingmark.ca/exchange-rates)
 * [Happy Currency Exchange](http://www.happycurrency.com/rates)
 * [Charlie's Currency Exchange](http://www.charliescurrency.ca/rates.html)
+* [Gastown Collectables Inc. Currency Exchange](http://www.gciexchange.com/rates.php)
 
 ## Getting Started
-
 
 Clone the repository in your local machine:
 
@@ -35,23 +35,22 @@ The libraries used in this project are:
 * Requests
 * OpenPyXL 
 
-To install all the libraries run the setup script:
+To install the required libraries, run the following command:
 
-`$ ./install_requirements.sh`
+`pip3 install -r requirements.txt`
 
-If you are not using a Linux environment, use the commands from [here](install_requirements.sh).
-
-After this step we can assume that all the libraries required by the program will be installed in your local machine.
+We will now assume that Python 3 and the required libraries are installed on your machine.
 
 ## Running The Program
-run the currency.py program
+
+Run the program:
 
 `$ python currency.py <currency code>`
 
 ### Input
 
-The predict_weather.py program takes in a `currency code` as a command line argument.
-Currency code can be any of the following:
+The currency.py program takes an input for the counter currency.
+The `<currency code>` command line argument must be one of the following:
 * USD
 * AUD
 * GBP
