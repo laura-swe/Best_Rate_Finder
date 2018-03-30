@@ -1,6 +1,6 @@
 # Best Exchange Currency Rate Finder  
 
-This program will find exchange rates for a provided currency from foreign-exchange providers listed in the data references below. The base currency for all exchange rates is Canadian Dollar (CAD).
+This program will find exchange rates for a provided currency from foreign-exchange providers listed in the data references below. The base currency for all exchange rates is Canadian Dollars (CAD).
 
 ## Exchange Rates Data References
 * [VBCE](https://www.vbce.ca/rates)
@@ -75,7 +75,7 @@ To see a simple example use this command:
 
 `$ python currency.py USD`
 
-A new file named output.xlsx is created in project directory. Use Excel to view the data
+A new file named output.xlsx is created in the project directory. Use Excel to view the data.
 
 ## Version Control
 
