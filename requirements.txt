@@ -1,5 +1,5 @@
 et_xmlfile==1.0.1
 pandas==0.22.0
-lxml==4.1.1
+lxml==4.6.2
 openpyxl==2.5.0
 requests==2.18.4
